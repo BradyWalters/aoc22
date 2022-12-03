@@ -22,9 +22,17 @@ for line in lines:
 print("Part 1:", total)
 
 # Part 2
-input = open("test_input.txt", "r")
+input = open("input.txt", "r")
 lines = input.readlines()
 
+total = 0
 for i in range(int(len(lines) / 3)):
-    for j in range(3):
-        print(lines[(i * 3) + j])
+    for c in lines[i * 3]:
+        if lines[i * 3 + 1].find(c) != -1 and lines[i * 3 + 2].find(c) != -1:
+            if c.isupper():
+                total += (ord(c) - upper_start + 27)
+            else:
+                total += (ord(c) - lower_start + 1)
+            break
+
+print("Part 2:", total)
